@@ -24,7 +24,7 @@ load("//internal/node:node_versions.bzl", "NODE_VERSIONS")
 load("//third_party/github.com/bazelbuild/bazel-skylib:lib/paths.bzl", "paths")
 load("//toolchains/node:node_toolchain_configure.bzl", "node_toolchain_configure")
 
-_DEFAULT_NODE_VERSION = "12.13.0"
+_DEFAULT_NODE_VERSION = "16.3.0"
 
 # @unsorted-dict-items
 _YARN_VERSIONS = {
@@ -793,6 +793,10 @@ def node_repositories(**kwargs):
             name = node_repository_name,
             **kwargs
         )
+
+        #if (kwargs.get("node_version") == None):
+        #   return
+
         target_tool = "@%s//:node_bin" % node_repository_name if _node_exists_for_platform(kwargs.get("node_version"), os_name) else "node"
         native.register_toolchains("@build_bazel_rules_nodejs//toolchains/node:node_%s_toolchain" % os_name)
         node_toolchain_configure(
