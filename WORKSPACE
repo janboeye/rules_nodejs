@@ -26,10 +26,9 @@ workspace(
 
 load("//:index.bzl", "BAZEL_VERSION", "SUPPORTED_BAZEL_VERSIONS", "node_repositories")
 
-# Node version used in the repository. Needs to be at least `v12.14.1` to satisfy
-# the minimum version required by the Angular packages.
 node_repositories(
-    node_version = "12.14.1",
+    # Node version used in the repository, this supports Apple Silicon
+    node_version = "16.3.0",
 )
 
 #
